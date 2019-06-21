@@ -1,58 +1,88 @@
-# Salesforce App
+# PDF Viewer Lightning Web Component
 
-This guide helps Salesforce developers who are new to Visual Studio Code go from zero to a deployed app using Salesforce Extensions for VS Code and Salesforce CLI.
+These are two Lightning Web Components to add PDF viewing capabilities to your Salesforce page. Configure which PDF file via the Lightning App Builder. Light up your org with PDF for training, enablement, entertainment ... The possibilities are endless!
 
-## Part 1: Choosing a Development Model
+Use the **showPdfById** for Home and App pages.
+![PDF Viewer on Opportunity Record page](recordPage.png)
 
-There are two types of developer processes or models supported in Salesforce Extensions for VS Code and Salesforce CLI. These models are explained below. Each model offers pros and cons and is fully supported.
+Use the **showPdfRelatedToRecordId** component for Record pages.
+![PDF Viewer on Home page](homePage.png)
 
-### Package Development Model
+> These components are designed to run on Salesforce Platform. If you want to experience Lightning Web Components on any platform, please visit https://lwc.dev, and try out our Lightning Web Components sample application [LWC Recipes OSS](https://github.com/trailheadapps/lwc-recipes-oss).
 
-The package development model allows you to create self-contained applications or libraries that are deployed to your org as a single package. These packages are typically developed against source-tracked orgs called scratch orgs. This development model is geared toward a more modern type of software development process that uses org source tracking, source control, and continuous integration and deployment.
+## Installing Components using a Scratch Org
 
-If you are starting a new project, we recommend that you consider the package development model. To start developing with this model in Visual Studio Code, see [Package Development Model with VS Code](https://forcedotcom.github.io/salesforcedx-vscode/articles/user-guide/package-development-model). For details about the model, see the [Package Development Model](https://trailhead.salesforce.com/en/content/learn/modules/sfdx_dev_model) Trailhead module.
+1. Set up your environment. Follow the steps in the [Quick Start: Lightning Web Components](https://trailhead.salesforce.com/content/learn/projects/quick-start-lightning-web-components/) Trailhead project. The steps include:
 
-If you are developing against scratch orgs, use the command `SFDX: Create Project` (VS Code) or `sfdx force:project:create` (Salesforce CLI) to create your project. If you used another command, you might want to start over with that command.
+-   Enable Dev Hub in your Trailhead Playground
+-   Install Salesforce CLI
+-   Install Visual Studio Code
+-   Install the Visual Studio Code Salesforce extensions, including the Lightning Web Components extension
 
-When working with source-tracked orgs, use the commands `SFDX: Push Source to Org` (VS Code) or `sfdx force:source:push` (Salesforce CLI) and `SFDX: Pull Source from Org` (VS Code) or `sfdx force:source:pull` (Salesforce CLI). Do not use the `Retrieve` and `Deploy` commands with scratch orgs.
+2. If you haven't already done so, authenticate with your hub org and provide it with an alias (**myhuborg** in the command below):
 
-### Org Development Model
-
-The org development model allows you to connect directly to a non-source-tracked org (sandbox, Developer Edition (DE) org, Trailhead Playground, or even a production org) to retrieve and deploy code directly. This model is similar to the type of development you have done in the past using tools such as Force.com IDE or MavensMate.
-
-To start developing with this model in Visual Studio Code, see [Org Development Model with VS Code](https://forcedotcom.github.io/salesforcedx-vscode/articles/user-guide/org-development-model). For details about the model, see the [Org Development Model](https://trailhead.salesforce.com/content/learn/modules/org-development-model) Trailhead module.
-
-If you are developing against non-source-tracked orgs, use the command `SFDX: Create Project with Manifest` (VS Code) or `sfdx force:project:create --manifest` (Salesforce CLI) to create your project. If you used another command, you might want to start over with this command to create a Salesforce DX project.
-
-When working with non-source-tracked orgs, use the commands `SFDX: Deploy Source to Org` (VS Code) or `sfdx force:source:deploy` (Salesforce CLI) and `SFDX: Retrieve Source from Org` (VS Code) or `sfdx force:source:retrieve` (Salesforce CLI). The `Push` and `Pull` commands work only on orgs with source tracking (scratch orgs).
-
-## The `sfdx-project.json` File
-
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
-
-The most important parts of this file for getting started are the `sfdcLoginUrl` and `packageDirectories` properties.
-
-The `sfdcLoginUrl` specifies the default login URL to use when authorizing an org.
-
-The `packageDirectories` filepath tells VS Code and Salesforce CLI where the metadata files for your project are stored. You need at least one package directory set in your file. The default setting is shown below. If you set the value of the `packageDirectories` property called `path` to `force-app`, by default your metadata goes in the `force-app` directory. If you want to change that directory to something like `src`, simply change the `path` value and make sure the directory you’re pointing to exists.
-
-```json
-"packageDirectories" : [
-    {
-      "path": "force-app",
-      "default": true
-    }
-]
+```
+sfdx force:auth:web:login -d -a myhuborg
 ```
 
-## Part 2: Working with Source
+3. Clone the youTubePlayer repository:
 
-For details about developing against scratch orgs, see the [Package Development Model](https://trailhead.salesforce.com/en/content/learn/modules/sfdx_dev_model) module on Trailhead or [Package Development Model with VS Code](https://forcedotcom.github.io/salesforcedx-vscode/articles/user-guide/package-development-model).
+```
+git clone https://github.com/annyhe/pdfViewer
+cd youTubePlayer
+```
 
-For details about developing against orgs that don’t have source tracking, see the [Org Development Model](https://trailhead.salesforce.com/content/learn/modules/org-development-model) module on Trailhead or [Org Development Model with VS Code](https://forcedotcom.github.io/salesforcedx-vscode/articles/user-guide/org-development-model).
+4. Create a scratch org and provide it with an alias (**pdfViewer** in the command below):
 
-## Part 3: Deploying to Production
+```
+sfdx force:org:create -s -f config/project-scratch-def.json -a pdfViewer
+```
 
-Don’t deploy your code to production directly from Visual Studio Code. The deploy and retrieve commands do not support transactional operations, which means that a deployment can fail in a partial state. Also, the deploy and retrieve commands don’t run the tests needed for production deployments. The push and pull commands are disabled for orgs that don’t have source tracking, including production orgs.
+5. Push the app to your scratch org:
 
-Deploy your changes to production using [packaging](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_dev2gp.htm) or by [converting your source](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_force_source.htm#cli_reference_convert) into metadata format and using the [metadata deploy command](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference_force_mdapi.htm#cli_reference_deploy).
+```
+sfdx force:source:push
+```
+
+6. Open the scratch org:
+
+```
+sfdx force:org:open
+```
+
+### Pre-requisite
+Before any coding, we need to set the expected behavior of opening a PDF file in **Setup**, otherwise we might accidentally download the file instead of viewing it. Go to **Setup → Security → File Upload and Download Security**, find the **.pdf** label, click the **Edit** button, and set the picklist value of the pdf to **Execute In Browser.**
+
+All set? Let's add the components to the respecitive pages!
+
+### Directions to add a PDF viewer component to an App or Home page
+
+1. Go to an App or Home page. Click on the **Setup** icon on the top left, then click **Edit Page**.
+
+2. Drag the **showPdfById** component onto the page.
+
+3. In the Lightning App Builder, set youTubeId field to the desired PDF File's Content Document ID. Where do you find this? Go to File --> Desired File --> Download, then get the ID in the browser. The url format should be like this HOST/sfc/servlet.shepherd/document/download/FILE_ID
+
+![Set the PDF File ID in App Builder](homePageConfig.png)
+
+4. Click **Save**, then **Back**.
+
+5. Enjoy your PDF viewer on the App or Home page!
+
+![PDF Viewer on Home page](homePage.png)
+
+### Directions to add a PDF viewer component to a Record page
+
+1. Go to a Record page. Make sure there is at least one PDF File related to the Record. If there are no related PDF File(s), the component will show an error message.
+
+2. To add the component to the Record page, click on the **Setup** icon on the top left, then click **Edit Page**.
+
+3. Drag the **showPdfRelatedToRecordId** component onto the page.
+
+![Add the PDF Viewer component in Lightning App Builder](recordPageConfig.png)
+
+4. Click **Save**, then **Back**.
+
+5. Enjoy your PDF viewer on the Record page!
+
+![PDF Viewer on Opportunity Record page](recordPage.png)
