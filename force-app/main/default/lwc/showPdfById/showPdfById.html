@@ -1,0 +1,9 @@
+<template>
+    <template if:true={url}>
+        <iframe src={url} width="100%" height="500px;"></iframe>
+    </template>
+    <template if:false={url}>
+        <lightning-card
+            >No valid PDF File ID found. Please specify a valid PDF File ID.</lightning-card>
+    </template>
+</template>

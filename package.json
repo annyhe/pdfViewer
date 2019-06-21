@@ -1,0 +1,40 @@
+{
+    "name": "pdfViewer",
+    "private": true,
+    "version": "0.1.0",
+    "description": "Lightning Web Components Recipes",
+    "scripts": {
+        "lint": "npm run lint:lwc",
+        "lint:lwc": "eslint **/lwc/**",
+        "prettier": "prettier --write '**/*.{cmp,component,css,html,js,json,md,page,yaml,yml}'",
+        "prettier:verify": "prettier --list-different '**/*.{html,js,json,yaml,yml,md,cmp,page,component}'"
+    },
+    "author": "Anny He",
+    "license": "CC0-1.0",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/annyhe/pdfViewer"
+    },
+    "engines": {
+        "node": ">= 10.13.0",
+        "npm": ">= 6.5.0"
+    },
+    "devDependencies": {
+        "@salesforce/eslint-config-lwc": "^0.3.0",
+        "eslint": "^5.16.0",
+        "lint-staged": "^8.1.5",
+        "prettier": "^1.18",
+        "semver": "^6.1.1"
+    },
+    "lint-staged": {
+        "**/*.{html,js,json,yaml,yml,md,cmp,page,component}": [
+            "prettier --write"
+        ],
+        "**/lwc/**": [
+            "eslint"
+        ],
+        "*": [
+            "git add"
+        ]
+    }
+}
