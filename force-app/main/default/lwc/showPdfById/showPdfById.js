@@ -1,16 +1,13 @@
-import { LightningElement, api, track, wire } from 'lwc';
-import getFileByID from '@salesforce/apex/PDFViewerController.getFileByID';
+import { LightningElement, api } from 'lwc';
 
 export default class ShowPdfById extends LightningElement {
     @api fileId;
-    @track url;
+    @api heightInRem;
 
-    @wire(getFileByID, { fileID: '$fileId' })
-    wiredFieldValue({ error }) {
-        if (error) {
-            this.url = '';
-        } else if (this.fileId) {
-            this.url = '/sfc/servlet.shepherd/document/download/' + this.fileId;
-        }
-    } 
+    get pdfHeight() {
+        return 'height: ' + this.heightInRem + 'rem';
+    }
+    get url() {
+        return '/sfc/servlet.shepherd/document/download/' + this.fileId;
+    }
 }

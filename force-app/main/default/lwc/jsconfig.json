@@ -3,11 +3,11 @@
         "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
-            "c/showPdfRelatedToRecordId": [
-                "showPdfRelatedToRecordId/showPdfRelatedToRecordId.js"
-            ],
             "c/showPdfById": [
                 "showPdfById/showPdfById.js"
+            ],
+            "c/showPdfRelatedToRecordId": [
+                "showPdfRelatedToRecordId/showPdfRelatedToRecordId.js"
             ]
         }
     },

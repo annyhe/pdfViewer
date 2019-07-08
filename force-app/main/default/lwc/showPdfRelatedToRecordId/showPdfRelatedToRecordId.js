@@ -8,7 +8,7 @@ export default class ShowPdfRelatedToRecordId extends LightningElement {
 
     @wire(getRelatedFilesByRecordId, { recordId: '$recordId' })
     wiredFieldValue({ error, data }) {
-        if (data && JSON.stringify(data) !== '[]') {
+        if (data) {
             this.pdfFileIds = data;
             this.error = '';
         } else if (error) {
