@@ -1,14 +1,14 @@
 public with sharing class PDFViewerController {
     @AuraEnabled(cacheable=true)
-    public static List<String> getRelatedFilesByRecordId(String recordId) {
+    public static List<ID> getRelatedFilesByRecordId(String recordId) {
         List<ContentDocumentLink> files = [SELECT ContentDocumentId FROM ContentDocumentLink WHERE LinkedEntityId = :recordId];
-        List<String> fileIDs = new List<String>();
+        List<ID> fileIDs = new List<ID>();
         for (ContentDocumentLink docLink : files) {
             fileIDs.add(docLink.ContentDocumentId);
         }
         List<ContentVersion> docs = [SELECT ContentDocumentId, FileExtension, 
             Title FROM ContentVersion WHERE ContentDocumentId IN : fileIDs AND FileExtension='pdf'];
-        List<String> pdfFileIDs = new List<String>();
+        List<ID> pdfFileIDs = new List<ID>();
         for (ContentVersion docLink : docs) {
             pdfFileIDs.add(docLink.ContentDocumentId);
         }

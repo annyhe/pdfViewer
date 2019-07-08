@@ -5,4 +5,9 @@
     <targets>
         <target>lightning__RecordPage</target>
     </targets>
+    <targetConfigs>
+        <targetConfig targets="lightning__RecordPage">
+            <property name="heightInRem" type="Integer" default="40" />
+        </targetConfig>
+    </targetConfigs> 
 </LightningComponentBundle>

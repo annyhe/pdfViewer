@@ -3,6 +3,7 @@ import getRelatedFilesByRecordId from '@salesforce/apex/PDFViewerController.getR
 
 export default class ShowPdfRelatedToRecordId extends LightningElement {
     @api recordId;
+    @api heightInRem;
     @track pdfFileIds;
     @track error;
 

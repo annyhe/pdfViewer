@@ -3,6 +3,7 @@
         <template for:each={pdfFileIds} for:item="pdfFileId">
             <c-show-pdf-by-id
                 key={pdfFileId}
+                height-in-rem={heightInRem}
                 file-id={pdfFileId}
             ></c-show-pdf-by-id>
         </template>
