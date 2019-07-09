@@ -2,12 +2,13 @@
 <LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata" fqn="showPdfRelatedToRecordId">
     <apiVersion>46.0</apiVersion>
     <isExposed>true</isExposed>
+    <masterLabel>Show PDF Files Related To Record</masterLabel>
     <targets>
         <target>lightning__RecordPage</target>
     </targets>
     <targetConfigs>
         <targetConfig targets="lightning__RecordPage">
-            <property name="heightInRem" type="Integer" default="40" />
+            <property label="Height in rem" name="heightInRem" type="Integer" default="40" />
         </targetConfig>
     </targetConfigs> 
 </LightningComponentBundle>
