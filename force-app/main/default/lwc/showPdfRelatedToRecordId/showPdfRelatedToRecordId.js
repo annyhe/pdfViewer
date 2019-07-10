@@ -4,17 +4,34 @@ import getRelatedFilesByRecordId from '@salesforce/apex/PDFViewerController.getR
 export default class ShowPdfRelatedToRecordId extends LightningElement {
     @api recordId;
     @api heightInRem;
-    @track pdfFileIds;
+    @track pdfFiles = [];
     @track error;
 
     @wire(getRelatedFilesByRecordId, { recordId: '$recordId' })
     wiredFieldValue({ error, data }) {
         if (data) {
-            this.pdfFileIds = data;
+            console.log(data);
+            this.pdfFiles = data;
             this.error = '';
         } else if (error) {
             this.error = error;
-            this.pdfFileIds = '';
+            this.pdfFiles = '';
         }
+    }
+
+    get tabs() {
+        const tabs = [];
+        const files = Object.entries(this.pdfFiles);
+        for (const [ID, title] of files) {
+            tabs.push({
+                value: ID,
+                label: title
+            });
+        }        
+        return tabs;
+    }
+
+    setUrl(e) {
+        console.log('clicked on tab', e.target.id);
     }
 }
