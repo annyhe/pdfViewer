@@ -23,6 +23,8 @@ export default class ShowPdfRelatedToRecordId extends LightningElement {
     }
 
     get tabs() {
+        if (!this.fileID) return [];
+
         const tabs = [];
         const files = Object.entries(this.pdfFiles);
         for (const [ID, title] of files) {
@@ -34,7 +36,7 @@ export default class ShowPdfRelatedToRecordId extends LightningElement {
         return tabs;
     }
 
-    setUrl(e) {
+    setFileID(e) {
         this.fileID = e.target.value;
     }
 }
