@@ -6,16 +6,19 @@ export default class ShowPdfRelatedToRecordId extends LightningElement {
     @api heightInRem;
     @track pdfFiles = [];
     @track error;
+    @track fileID;
 
     @wire(getRelatedFilesByRecordId, { recordId: '$recordId' })
     wiredFieldValue({ error, data }) {
         if (data) {
-            console.log(data);
             this.pdfFiles = data;
             this.error = '';
+            const fileIDs = Object.keys(data);
+            this.fileID =  fileIDs.length ? fileIDs[0] : ''; 
         } else if (error) {
             this.error = error;
-            this.pdfFiles = '';
+            this.pdfFiles = ''; 
+            this.fileID = ''; 
         }
     }
 
@@ -32,6 +35,6 @@ export default class ShowPdfRelatedToRecordId extends LightningElement {
     }
 
     setUrl(e) {
-        console.log('clicked on tab', e.target.id);
+        this.fileID = e.target.value;
     }
 }
