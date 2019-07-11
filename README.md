@@ -25,11 +25,11 @@ Use the **showPdfRelatedToRecordId** component for Record pages.
 sfdx force:auth:web:login -d -a myhuborg
 ```
 
-3. Clone the youTubePlayer repository:
+3. Clone the pdfViewer repository:
 
 ```
 git clone https://github.com/annyhe/pdfViewer
-cd youTubePlayer
+cd pdfViewer
 ```
 
 4. Create a scratch org and provide it with an alias (**pdfViewer** in the command below):
