@@ -11,8 +11,13 @@
             file-id={fileID}
         ></c-show-pdf-by-id>
     </template>
-    
+
     <template if:false={fileID}>
         <lightning-card><div class="slds-text-align_center">No related PDF file found.</div></lightning-card>
+    </template>
+
+    <!-- Conditionally render the error in error component -->
+    <template if:true={error}>
+        <c-error-panel errors={error}></c-error-panel>
     </template>
 </template>
