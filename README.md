@@ -65,7 +65,7 @@ All set? Let's add the components to the respective pages!
 
 ![Set the PDF File ID in App Builder](homePageConfig.png)
 
-4. Click **Save**, then **Back**.
+4. Optionally you can set the height of the PDF with **Height in rem**. The PDF is not rendered yet. Check there is no error message. Click **Save**, then **Back**.
 
 5. Enjoy your PDF on the App or Home page!
 
@@ -81,7 +81,7 @@ All set? Let's add the components to the respective pages!
 
 ![Add the PDF Viewer component in Lightning App Builder](recordPageConfig.png)
 
-4. Click **Save**, then **Back**.
+4. Optionally you can set the height of the PDF with **Height in rem**. Click **Save**, then **Back**.
 
 5. Enjoy your PDF viewer on the Record page!
 
