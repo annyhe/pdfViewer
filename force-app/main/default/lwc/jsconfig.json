@@ -3,14 +3,14 @@
         "experimentalDecorators": true,
         "baseUrl": ".",
         "paths": {
+            "c/errorPanel": [
+                "errorPanel/errorPanel.js"
+            ],
             "c/showPdfById": [
                 "showPdfById/showPdfById.js"
             ],
             "c/showPdfRelatedToRecordId": [
                 "showPdfRelatedToRecordId/showPdfRelatedToRecordId.js"
-            ],
-            "c/errorPanel": [
-                "errorPanel/errorPanel.js"
             ]
         }
     },
