@@ -1,8 +1,8 @@
 <template>
-    <template if:true={url}>
+    <template if:true={fileId}>
         <iframe src={url} style={pdfHeight}></iframe>
     </template>
-    <template if:false={url}>
+    <template if:false={fileId}>
         <lightning-card
             >No PDF File ID found. Please specify PDF File ID.</lightning-card
         >

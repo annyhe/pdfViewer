@@ -2,22 +2,27 @@
     <template if:true={fileID}>
         <lightning-tabset variant="scoped">
             <template for:each={tabs} for:item="tab">
-                <lightning-tab key={tab.value} label={tab.label} value={tab.value} onactive={setFileID}>
+                <lightning-tab
+                    key={tab.value}
+                    label={tab.label}
+                    value={tab.value}
+                    onactive={setFileID}
+                >
                 </lightning-tab>
             </template>
-        </lightning-tabset>        
+        </lightning-tabset>
         <c-show-pdf-by-id
             height-in-rem={heightInRem}
             file-id={fileID}
         ></c-show-pdf-by-id>
     </template>
 
-    <template if:false={fileID}>
-        <lightning-card><div class="slds-text-align_center">No related PDF file found.</div></lightning-card>
-    </template>
+    <lightning-card if:false={fileID}
+        ><div class="slds-text-align_center">
+            This record has no PDF file attached.
+        </div></lightning-card
+    >
 
     <!-- Conditionally render the error in error component -->
-    <template if:true={error}>
-        <c-error-panel errors={error}></c-error-panel>
-    </template>
+    <c-error-panel if:true={error} errors={error}></c-error-panel>
 </template>

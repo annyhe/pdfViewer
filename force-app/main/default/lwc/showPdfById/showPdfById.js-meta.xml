@@ -1,6 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<LightningComponentBundle xmlns="http://soap.sforce.com/2006/04/metadata" fqn="showPdfById">
-    <apiVersion>46.0</apiVersion>
+<?xml version="1.0" encoding="UTF-8" ?>
+<LightningComponentBundle
+    xmlns="http://soap.sforce.com/2006/04/metadata"
+    fqn="showPdfById"
+>
+    <apiVersion>50.0</apiVersion>
     <isExposed>true</isExposed>
     <masterLabel>Show PDF File By ID</masterLabel>
     <targets>
@@ -9,9 +12,21 @@
         <target>lightning__RecordPage</target>
     </targets>
     <targetConfigs>
-        <targetConfig targets="lightning__AppPage, lightning__HomePage, lightning__RecordPage">
-            <property label="File ID" name="fileId" type="String" placeholder="Please enter PDF file's Content Document ID." />
-            <property label="Height in rem" name="heightInRem" type="Integer" default="40" />
+        <targetConfig
+            targets="lightning__AppPage, lightning__HomePage, lightning__RecordPage"
+        >
+            <property
+                label="File ID"
+                name="fileId"
+                type="String"
+                placeholder="Please enter PDF file's Content Document ID."
+            />
+            <property
+                label="Height in rem"
+                name="heightInRem"
+                type="Integer"
+                default="40"
+            />
         </targetConfig>
     </targetConfigs>
 </LightningComponentBundle>
