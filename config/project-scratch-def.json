@@ -1,10 +1,10 @@
 {
-    "orgName": "anny.he Company",
+    "orgName": "PDF Viewer",
     "edition": "Developer",
     "features": [],
     "settings": {
-        "orgPreferenceSettings": {
-            "s1DesktopEnabled": true
+        "mobileSettings": {
+            "enableS1EncryptedStoragePref2": false
         }
     }
 }

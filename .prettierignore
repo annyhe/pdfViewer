@@ -3,3 +3,7 @@
 #
 
 .sfdx
+.localdevserver
+.vscode
+jsconfig.json
+coverage/

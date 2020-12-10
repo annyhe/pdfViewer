@@ -2,7 +2,15 @@
 # More information: https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_exclude_source.htm
 #
 
+# .forceignore v2
+
+# Standard metadata
 package.xml
+**/appMenu/**
+**/appSwitcher/**
+**/objectTranslations/**
+**/profiles/**
+**/settings/**
 
 # LWC configuration files
 **/jsconfig.json
